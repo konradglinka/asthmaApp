@@ -1,0 +1,2373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1100.0" prefHeight="720.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <StackPane fx:id="registerAndLoginStackPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #61a2ff;">
+         <children>
+            <VBox fx:id="loginVBox" alignment="CENTER" maxWidth="300.0" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Logowanie" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="badEmailOrPasswordLabel" text="Nieprawidłowy E-mail lub hasło" textFill="RED" visible="false">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="E-mail">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <TextField fx:id="loginEmailTextField" alignment="CENTER" maxWidth="300.0" onAction="#pressEnterToTypePassword" text="konradglkm@gmail.com">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <Label text="Hasło">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                        <PasswordField fx:id="passwordPasswordField" alignment="CENTER" onAction="#pressEnterToLogin" text="zaq1@WSX">
+                           <font>
+                              <Font size="16.0" />
+                           </font></PasswordField>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginButton" prefHeight="50.0" prefWidth="100.0" stylesheets="@buttonAdd.css" text="Zaloguj">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchOnForgotPasswordButton" prefHeight="30.0" stylesheets="@buttonRemove.css" text="Zapomnialem hasła">
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label text="Nie posiadasz konta ?">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchOnRegisterButton" prefHeight="30.0" stylesheets="@buttonAdd.css" text="Rejestracja">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="registerVBox" alignment="CENTER" layoutX="160.0" layoutY="10.0" maxWidth="400.0" prefHeight="200.0" visible="false">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Rejestracja" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="registrationAlertLabel" text="Hasła nie są jednakowe" textFill="RED" visible="false" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Płeć">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <HBox alignment="CENTER" prefHeight="25.0">
+                           <children>
+                              <RadioButton fx:id="whomenRadioButton" minWidth="100.0" mnemonicParsing="false" prefWidth="150.0" selected="true" text="Kobieta" HBox.hgrow="ALWAYS">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="sexRadioButtons" />
+                                 </toggleGroup>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton fx:id="menRadioButton" contentDisplay="CENTER" minWidth="100.0" mnemonicParsing="false" selected="true" text="Meżczyzna" toggleGroup="$sexRadioButtons">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <Label text="Data urodzenia">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
+                        <DatePicker fx:id="dateOfBirthDatePicker" editable="false" maxWidth="1.7976931348623157E308" minHeight="37.0" promptText="19.02.1996" VBox.vgrow="ALWAYS" />
+                        <Label text="Wzrost (cm)">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                        <TextField fx:id="growthTextField" alignment="CENTER" text="190">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <Label text="E-mail">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                        <TextField fx:id="registrationEmailTextField" alignment="CENTER" maxWidth="1.7976931348623157E308" onAction="#pressEnterToTypeRegistrationPassword" text="konradglkm@gmail.com" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <Label text="Hasło">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                        <PasswordField fx:id="registrationPasswordPasswordField" alignment="CENTER" onAction="#pressEnterToTypeConfirmedRegistrationPassword" text="zaq1@WSX">
+                           <font>
+                              <Font size="16.0" />
+                           </font></PasswordField>
+                        <Label layoutX="145.0" layoutY="64.0" text="Powtórz hasło">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                        <PasswordField fx:id="registrationConfirmedPasswordPasswordField" alignment="CENTER" layoutX="10.0" layoutY="73.0" onAction="#pressEnterToSendRegistrationCode" text="zaq1@WSX">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></PasswordField>
+                        <Button layoutX="132.0" layoutY="94.0" maxWidth="1.7976931348623157E308" minHeight="50.0" mnemonicParsing="false" onAction="#sendRegistrationCode" prefHeight="50.0" stylesheets="@buttonAdd.css" text="Zarejestruj">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Masz już konto ?">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
+                        <Button maxWidth="1.7976931348623157E308" minHeight="30.0" mnemonicParsing="false" onAction="#switchOnLoginButton" stylesheets="@buttonAdd.css" text="Logowanie">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="register2VBox" alignment="CENTER" layoutX="160.0" layoutY="10.0" maxWidth="400.0" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Rejestracja" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="registrationCodeAlertLabel" text="Hasła nie są jednakowe" textFill="RED" visible="false">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label minHeight="50.0" text="Aby potwierdzić rejestracje wpisz kod przesłany na podany wcześniej adres e-mail" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></Label>
+                        <TextField fx:id="registrationCodeTextField" alignment="CENTER" maxWidth="1.7976931348623157E308" onAction="#pressEnterToRegister">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></TextField>
+                        <Button layoutX="132.0" layoutY="94.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerButton" prefHeight="50.0" stylesheets="@buttonAdd.css" text="Zarejestruj">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Nie otrzymałeś kodu na podany adres E-mail?">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="sendRegistrationCodeButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sendResetRegistrationCodeAgain" stylesheets="@buttonRemove.css" text="Wyślij kod ponownie">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Label text="Masz już konto ?">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchOnLoginButton" text="Logowanie">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@button.css" />
+                              <URL value="@buttonAdd.css" />
+                           </stylesheets>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="changePassword1VBox" alignment="CENTER" layoutX="160.0" layoutY="10.0" maxWidth="400.0" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Zresetuj hasło" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="badEmailResetPasswordLabel" text="Nieprawidłowy E-mail" textFill="RED" visible="false">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Podaj adres E-mail dla którego chcesz zresetować hasło, zostanie na niego wysłany kod do resetowania hasła" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <TextField fx:id="emailToResetPasswordTextField" alignment="CENTER" maxWidth="1.7976931348623157E308" onAction="#pressEnterToSendPasswordCode" text="konradgjd@gmail.com">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></TextField>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sendResetPasswordCode" prefHeight="50.0" stylesheets="@buttonAdd.css" text="Wyślij kod">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Znasz hasło ?">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchOnLoginButton" stylesheets="@buttonAdd.css" text="Powrót do logowania">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="changePassword2VBox" alignment="CENTER" layoutX="160.0" layoutY="10.0" maxWidth="400.0" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Zresetuj hasło" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="badCodeResetPasswordLabel" text="Nie prawidłowy kod" textFill="RED" visible="false">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Wpisz otrzymany kod aby zresetować hasło" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <TextField fx:id="resetCodeTextField" alignment="CENTER" maxWidth="1.7976931348623157E308" onAction="#pressEnterToResetPassword">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></TextField>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToChangePasswordAfterEnterCodeButton" prefHeight="50.0" stylesheets="@buttonAdd.css" text="Zresetuj hasło">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Nie otrzymałeś kodu na podany adres E-mail?">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Button fx:id="sendResetPasswordCodeButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sendResetPasswordCodeAgain" stylesheets="@buttonRemove.css" text="Wyślij kod ponownie">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                        <Label text="Znasz hasło ?">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchOnLoginButton" stylesheets="@buttonAdd.css" text="Powrót do logowania">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="changePassword3VBox" alignment="CENTER" layoutX="160.0" layoutY="10.0" maxWidth="400.0" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Zmiana hasła" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="badPasswordLabel" text="Nieprawidłowe hasło" textFill="RED" visible="false">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Hasło" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <PasswordField fx:id="resetPasswordPasswordField" onAction="#pressEnterToTypeResetConfirmedPassword">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></PasswordField>
+                        <Label layoutX="145.0" layoutY="43.0" text="Powtórz hasło" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
+                        <PasswordField fx:id="conifrmedResetPasswordPasswordField" layoutX="10.0" layoutY="52.0" onAction="#pressEnterToChangePassword">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></PasswordField>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changePasswordButton" prefHeight="50.0" stylesheets="@buttonAdd.css" text="Zmień hasło">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Znasz hasło ?">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchOnLoginButton" stylesheets="@buttonAdd.css" text="Powrót do logowania">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+      <HBox fx:id="mainViewHBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" visible="false">
+         <children>
+            <VBox fillWidth="false" style="-fx-background-color: black;">
+               <children>
+                  <Button fx:id="TabPanePEFButton" alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="200.0" mnemonicParsing="false" onAction="#onClickShowPEFTabPane" prefWidth="202.0" stylesheets="@FXCSS/button2.css" text="PEF" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/pefIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Button fx:id="TabPaneBMIButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickShowBMITabPane" prefWidth="202.0" stylesheets="@button.css" text="BMI" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/bmiIcon.png" />
+                           </image></ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Button fx:id="TabPaneBPMButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickShowBPMTabPane" prefWidth="202.0" stylesheets="@button.css" text="BPM" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/bpmIcon.png" />
+                           </image></ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Button fx:id="TabPaneAirButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickShowAirTabPane" prefWidth="202.0" stylesheets="@button.css" text="Stan powietrza" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/measureIcon.png" />
+                           </image></ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Button fx:id="TabPaneAlarmButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickShowAlarmTabPane" prefWidth="202.0" stylesheets="@button.css" text="Powiadomienie alarmowe" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/alertIcon.png" />
+                           </image></ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Button fx:id="medicinesTabPaneButton" contentDisplay="TOP" layoutX="10.0" layoutY="347.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickShowMedicinesTabPane" prefWidth="202.0" stylesheets="@button.css" text="Przyjmowanie leków" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/plantIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="TabPaneSettingsButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickShowSettingsTabPane" prefWidth="202.0" stylesheets="@button.css" text="Ustawienia" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/settingsIcon.png" />
+                           </image></ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="584.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@button.css" text="Dokumentacja użytkownika" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/documentationIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickLogoutOrExit" prefWidth="202.0" stylesheets="@button.css" text="Wyloguj/Wyjdz z aplikacji" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Icons/logoutIcon.png" />
+                           </image></ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Label fx:id="DateLabel" layoutX="10.0" layoutY="383.0" style="-fx-font-weight: bold;" text="Data" textFill="#268638">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TimeLabel" style="-fx-font-weight: bold;" textFill="#268638">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <StackPane maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <TabPane fx:id="TabPaneSettings" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/normalTabPane.css" tabClosingPolicy="UNAVAILABLE" visible="false">
+                     <tabs>
+                        <Tab text="Ustawienia konta użytkownika">
+                           <content>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Zmiana ustawień konta" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER" maxWidth="550.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0">
+                                                   <children>
+                                                      <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Wzrost (cm)" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Data urodzenia" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Płeć" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Metoda obliczająca wartość PPM" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="10.0" layoutY="27.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Metoda obliczająca należną masę ciała" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="10.0" layoutY="68.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Płeć" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <TextField fx:id="settingsGrowthTextField" alignment="CENTER" promptText="Wzrost w cm" stylesheets="@FXCSS/textFieldBorder.css" />
+                                                      <DatePicker fx:id="settingsBirthDatePicker" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <RadioButton fx:id="settingsWhomenButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Kobieta">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                               <toggleGroup>
+                                                                  <ToggleGroup fx:id="sexButtons" />
+                                                               </toggleGroup>
+                                                               <HBox.margin>
+                                                                  <Insets right="10.0" />
+                                                               </HBox.margin>
+                                                            </RadioButton>
+                                                            <RadioButton fx:id="settingsMenButton" mnemonicParsing="false" text="Mężczyzna" toggleGroup="$sexButtons">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                            </RadioButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="64.0" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <RadioButton fx:id="settingsWhomenButton1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" selected="true" text="Tak">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets right="10.0" />
+                                                               </HBox.margin>
+                                                               <toggleGroup>
+                                                                  <ToggleGroup fx:id="emailButtons" />
+                                                               </toggleGroup>
+                                                            </RadioButton>
+                                                            <RadioButton fx:id="settingsMenButton1" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Nie" toggleGroup="$emailButtons">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" />
+                                                               </HBox.margin>
+                                                            </RadioButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <ComboBox fx:id="ppmMethodsComboBox" maxWidth="1.7976931348623157E308" minHeight="29.0" />
+                                                      <ComboBox fx:id="normalBodyMassMethodsComboBox" layoutX="10.0" layoutY="97.0" maxWidth="1.7976931348623157E308" minHeight="29.0" prefWidth="150.0" />
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <Button maxWidth="530.0" mnemonicParsing="false" onAction="#onClickChangeAlreadyLogedUserPassword" prefHeight="50.0" stylesheets="@buttonAdd.css" text="Zapisz ustawienia">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/saveIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Zmiana hasła do konta">
+                           <content>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Zmiana hasła" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <VBox alignment="CENTER" maxWidth="400.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="passwordAlertLabel" alignment="CENTER" layoutX="10.0" layoutY="123.0" maxWidth="1.7976931348623157E308" text="alert" textFill="RED" visible="false">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Podaj stare hasło" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <PasswordField fx:id="oldPasswordPasswordField">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </PasswordField>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Podaj nowe hasło" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <PasswordField fx:id="newPasswordPasswordField" layoutX="10.0" layoutY="35.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </PasswordField>
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="72.0" maxWidth="1.7976931348623157E308" text="Powtórz nowe hasło" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <PasswordField fx:id="confirmedNewPasswordPasswordField" layoutX="10.0" layoutY="97.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </PasswordField>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickChangeAlreadyLogedUserPassword" prefHeight="50.0" stylesheets="@buttonAdd.css" text="Zmien hasło">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                  <TabPane fx:id="TabPaneAir" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/normalTabPane.css" tabClosingPolicy="UNAVAILABLE" visible="false">
+                     <tabs>
+                        <Tab text="Stan powietrza">
+                           <content>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="210.0" style="-fx-background-color: #61a2ff; -fx-border-color: black; -fx-border-width: 1.5;">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Wybierz stacje" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="OWMStationsBrowserTextField" alignment="CENTER" promptText="Wpisz nazwe miasta" style="-fx-border-color: black; -fx-border-width: 1.5;" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font></TextField>
+                                             </children>
+                                          </HBox>
+                                          <ListView fx:id="OWMStationsListView" onMouseClicked="#onClickOwmStationsListView" prefHeight="300.0" prefWidth="120.0" style="-fx-border-color: black; -fx-border-width: 1.5;" VBox.vgrow="ALWAYS" />
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRefreshOwmStationsButton" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Odśwież liste stacji" VBox.vgrow="ALWAYS">
+                                             <graphic>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/updateIcon.png" />
+                                                   </image></ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <TableView fx:id="measuresFromOWMTableView" HBox.hgrow="ALWAYS">
+                                       <columns>
+                                          <TableColumn fx:id="tempColumn" maxWidth="-1.0" minWidth="180.0" prefWidth="-1.0" text="Temperatura (C)" />
+                                          <TableColumn fx:id="windColumn" maxWidth="-1.0" minWidth="180.0" prefWidth="-1.0" text="Prędkość wiatru (m/s)" />
+                                          <TableColumn fx:id="humidityColumn" maxWidth="-1.0" minWidth="180.0" prefWidth="-1.0" text="Wilgotność (%)" />
+                                          <TableColumn fx:id="claudinessColumn" maxWidth="-1.0" minWidth="180.0" prefWidth="-1.0" text="Zachmurzenie" />
+                                          <TableColumn fx:id="pressureColumn" maxWidth="-1.0" minWidth="180.0" prefWidth="-1.0" text="Ciśnienie (hPa)" />
+                                          <TableColumn fx:id="dateOWMColumn" maxWidth="-1.0" minWidth="180.0" prefWidth="-1.0" text="Data" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                       <stylesheets>
+                                          <URL value="@FXCSS/tableView.css" />
+                                          <URL value="@FXCSS/tableViewCenterColumns.css" />
+                                       </stylesheets>
+                                    </TableView>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Zanieczyszczenia powietrza">
+                           <content>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="200.0" style="-fx-background-color: #61a2ff; -fx-border-color: black; -fx-border-width: 1.5;">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Wybierz stacje" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="GIOSStationsBrowserTextField" alignment="CENTER" promptText="Wpisz nazwe miasta" style="-fx-border-color: black; -fx-border-width: 1.5;" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font></TextField>
+                                             </children>
+                                          </HBox>
+                                          <ListView fx:id="GIOSStationsListView" onMouseClicked="#onClickGIOSStation" prefHeight="300.0" prefWidth="120.0" style="-fx-border-color: black; -fx-border-width: 1.5;" VBox.vgrow="ALWAYS" />
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRefreshGiosStationsAndSensorsButton" style="-fx-border-color: black; -fx-border-witdh: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Odśwież liste stacji">
+                                             <graphic>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/updateIcon.png" />
+                                                   </image></ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="300.0" style="-fx-border-color: black; -fx-border-width: 1.5; -fx-background-color: #61a2ff;">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Wybierz sensor" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <ListView fx:id="sensorsListView" onMouseClicked="#onClickGIOSSensor" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/listView.css" VBox.vgrow="ALWAYS" />
+                                          <VBox fx:id="GIOSAirIndexName" prefHeight="242.0">
+                                             <children>
+                                                <TableView fx:id="GIOSAirIndexTableView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 1.5;" VBox.vgrow="ALWAYS">
+                                                   <columns>
+                                                      <TableColumn fx:id="GIOSAirIndexNameColumn" prefWidth="107.0" text="Sensor" />
+                                                      <TableColumn fx:id="GIOSAirIndexValueColumn" prefWidth="187.0" text="Polski indeks jakości powietrza" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <TableView fx:id="GIOSTableView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <columns>
+                                          <TableColumn fx:id="GIOSValueColumn" editable="false" maxWidth="1000.0" minWidth="200.0" prefWidth="-1.0" text="Wartość (µg/m3, dla CO (mg/m3))" />
+                                          <TableColumn fx:id="GIOSDateColumn" editable="false" maxWidth="1000.0" minWidth="200.0" prefWidth="-1.0" text="Data" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                       <stylesheets>
+                                          <URL value="@FXCSS/tableView.css" />
+                                          <URL value="@FXCSS/tableViewCenterColumns.css" />
+                                       </stylesheets>
+                                    </TableView>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Kalendarz pylenia roślin">
+                           <content>
+                              <VBox alignment="CENTER" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="300.0" minHeight="70.0" minWidth="500.0" mnemonicParsing="false" onAction="#onClickOpenDustyPlantsCalendarButton" stylesheets="@FXCSS/buttonAdd.css" text="Pokaż kalendarz pylenia roślin" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label text="Aktualnie pylące rośliny" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <VBox VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ListView fx:id="actualDustyPlantsListView" minHeight="100.0" style="-fx-fixed-cell-size: 50;" VBox.vgrow="ALWAYS">
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </VBox.margin></ListView>
+                                       </children>
+                                    </VBox>
+                                    <Label text="Źródło danych: Ośrodek Badania Alergenów Środowiskowych Sp. z.o.o" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin></Label>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Pomiary od użytkowników">
+                           <content>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox style="-fx-border-color: black; -fx-background-color: #61a2ff; -fx-border-width: 1.5;">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Wybierz stacje" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="takeMeasureFromUserBrowserTextField" alignment="CENTER" promptText="Wpisz nazwe miasta" style="-fx-border-color: black; -fx-border-width: 1.5;" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font></TextField>
+                                             </children>
+                                          </HBox>
+                                          <ListView fx:id="usersStationsToTakeMaeasureListView" prefHeight="300.0" prefWidth="120.0" style="-fx-border-color: black; -fx-border-width: 1.5;" VBox.vgrow="ALWAYS" />
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRefreshUsersStations" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Odśwież liste stacji">
+                                             <graphic>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/updateIcon.png" />
+                                                   </image></ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox VBox.vgrow="NEVER">
+                                             <children>
+                                                <ComboBox fx:id="takeMeasuresFromUserComboBox" prefHeight="35.0" prefWidth="5000.0" HBox.hgrow="ALWAYS" />
+                                                <Button minWidth="300.0" mnemonicParsing="false" onAction="#showMeasuresFromUserButton" prefHeight="35.0" stylesheets="@FXCSS/buttonAdd.css" text="Pokaż pomiary" />
+                                             </children>
+                                          </HBox>
+                                          <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <TableView fx:id="temperatureTableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/tableView.css">
+                                                   <placeholder>
+                                                      <Label>
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                      </Label>
+
+
+                                                   </placeholder>
+                                                   <columns>
+                                                      <TableColumn fx:id="dateTempUser" prefWidth="151.0" text="Data pomiaru" />
+                                                      <TableColumn fx:id="userNameTemp" prefWidth="124.0" text="Autor pomiaru" />
+                                                      <TableColumn fx:id="temperature" minWidth="0.0" prefWidth="169.0" text="Wartość" />
+                                                   </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                                <TableView fx:id="windSpeedTableView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/tableView.css" visible="false">
+                                                   <columns>
+                                                      <TableColumn fx:id="dateWindSpeedUser" prefWidth="151.0" text="Data pomiaru" />
+                                                      <TableColumn fx:id="userNameWindSpeed" prefWidth="124.0" text="Autor pomiaru" />
+                                                      <TableColumn fx:id="windSpeed" minWidth="0.0" prefWidth="169.0" text="Wartość" />
+                                                   </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                                <TableView fx:id="pressureTableView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/tableView.css" visible="false">
+                                                   <columns>
+                                                      <TableColumn fx:id="datePressureUser" prefWidth="151.0" text="Data pomiaru" />
+                                                      <TableColumn fx:id="userNamePressure" prefWidth="124.0" text="Autor pomiaru" />
+                                                      <TableColumn fx:id="pressure" minWidth="0.0" prefWidth="169.0" text="Wartość" />
+                                                   </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                                <TableView fx:id="humidityTableView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/tableView.css" visible="false">
+                                                   <columns>
+                                                      <TableColumn fx:id="dateHumidityUser" prefWidth="151.0" text="Data pomiaru" />
+                                                      <TableColumn fx:id="userNameHumidity" prefWidth="124.0" text="Autor pomiaru" />
+                                                      <TableColumn fx:id="humidity" minWidth="0.0" prefWidth="169.0" text="Wartość" />
+                                                   </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                                <TableView fx:id="claudinessTableView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/tableView.css" visible="false">
+                                                   <columns>
+                                                      <TableColumn fx:id="dateClaudinessUser" prefWidth="151.0" text="date" />
+                                                      <TableColumn fx:id="userNameClaudiness" prefWidth="124.0" text="userName" />
+                                                      <TableColumn fx:id="claudiness" minWidth="0.0" prefWidth="169.0" text="Wartość" />
+                                                   </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Dodaj pomiar do bazy">
+                           <content>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox style="-fx-background-color: #61a2ff; -fx-border-color: black; -fx-border-width: 1.5;">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Wybierz stacje" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="addMesureFromUserBrowserTextField" alignment="CENTER" promptText="Wpisz nazwe miasta" style="-fx-border-color: black; -fx-border-width: 1.5;" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font></TextField>
+                                             </children>
+                                          </HBox>
+                                          <ListView fx:id="usersStationsToAddMeasureListView" prefHeight="300.0" prefWidth="120.0" style="-fx-border-color: black; -fx-border-width: 1.5;" VBox.vgrow="ALWAYS" />
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRefreshUsersStations" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Odśwież liste stacji">
+                                             <graphic>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/updateIcon.png" />
+                                                   </image></ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER" maxWidth="530.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #61a2ff;">
+                                             <children>
+                                                <VBox prefHeight="371.0" style="-fx-background-color: white;">
+                                                   <children>
+                                                      <Label maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Temperatura powietrza (C)">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Wilgotność powietrza (%)">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="10.0" layoutY="139.0" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Ciśnienie (hPa)">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="10.0" layoutY="168.0" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Prędkość wiatru (m/s)">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="10.0" layoutY="197.0" maxWidth="1.7976931348623157E308" style="-fx-border-color: black; -fx-border-width: 1.5;" text="Zachmurzenie">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <VBox maxWidth="300.0" prefHeight="371.0" prefWidth="166.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <TextField fx:id="addTemperatureFromUserTextField" stylesheets="@FXCSS/textFieldBorder.css" text="12" />
+                                                      <TextField fx:id="addHumidityFromUserTextField" stylesheets="@FXCSS/textFieldBorder.css" text="58" />
+                                                      <TextField fx:id="addPressureFromUserTextField" layoutX="10.0" layoutY="35.0" stylesheets="@FXCSS/textFieldBorder.css" text="1020" />
+                                                      <TextField fx:id="addWindSpeedFromUserTextField" layoutX="10.0" layoutY="35.0" stylesheets="@FXCSS/textFieldBorder.css" text="10" />
+                                                      <ComboBox fx:id="claudinessFromIserComboBox" maxWidth="1.7976931348623157E308" prefWidth="194.0" style="-fx-border-width: 1.5; -fx-border-color: black;" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="BOTTOM_CENTER" fillHeight="false" prefWidth="200.0">
+                                             <children>
+                                                <Button alignment="CENTER" mnemonicParsing="false" onAction="#addMeasureFromUserButton" prefHeight="40.0" prefWidth="512.0" stylesheets="@FXCSS/buttonAdd.css" text="Prześlij pomiar" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                   <graphic>
+                                                      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@Icons/addIcon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></Button>
+                                             </children>
+                                          </HBox>
+                                       </children></VBox>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+
+                  <TabPane fx:id="TabPaneAlarm" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/normalTabPane.css" tabClosingPolicy="UNAVAILABLE" visible="false">
+                     <tabs>
+                        <Tab text="Wyślij pomiadomienie alarmowe">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Jeśli czujesz, zagrożenie spowodowane na przykład niespodziewanym atakiem astmy lub  jej bardzo silnymi objawami możesz wysłać powiadomienie alarmowe na wybrane przez Ciebie adresy email w celu uzyskania pomocy." textAlignment="CENTER" textFill="#b21a1a" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets left="40.0" right="40.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Button fx:id="sendAlertEmailsButton" mnemonicParsing="false" onAction="#onClickSendAlertEmailsButton" prefHeight="250.0" prefWidth="250.0" stylesheets="@buttonRemove.css" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                             <graphic>
+                                                <Label contentDisplay="TOP" text="Kliknij aby wysłać powiadomienia alarmowe na zapisane adresy e-mail" textAlignment="CENTER" wrapText="true">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                   <graphic>
+                                                      <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@Icons/alertIcon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Label>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Lista adresów do których będzie dostarczone powiadomienie" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ListView fx:id="alertEmailLookListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/listView.css" HBox.hgrow="ALWAYS">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </ListView>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Lista adresów E-mail">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Powiadomienia E-mail o ataku astmy będą wysyłane na następujace adresy E-mail" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ListView fx:id="alertEmailsListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/listView.css" HBox.hgrow="ALWAYS">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </ListView>
+                                          <Button contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="114.0" mnemonicParsing="false" onAction="#onClickRemoveSelectedAlertEmail" prefHeight="309.0" prefWidth="114.0" stylesheets="@buttonRemove.css" text="Usuń zaznaczony adres E-mail z listy" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/rubishBinIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label maxHeight="1.7976931348623157E308" style="-fx-border-color: black;" text="Dodaj nowy adres E-mail do listy: " textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="addNewAlertEmailTextField" maxHeight="1.7976931348623157E308" prefHeight="37.0" prefWidth="383.0" style="-fx-border-color: black;" HBox.hgrow="ALWAYS" />
+                                          <Button minWidth="114.0" mnemonicParsing="false" onAction="#onClickAddNewAlertEmail" stylesheets="@buttonAdd.css" text="Dodaj">
+                                             <graphic>
+                                                <ImageView fitHeight="28.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/addIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Modyfikuj powiadomienie alarmowe">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Tutaj możesz zmodyfkować powiadomienie o ataku astmy" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Tytuł powiadomienia" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="alertTitleTextField">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="35.0" maxWidth="1.7976931348623157E308" text="Treść powiadomienia" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea fx:id="alertValueTextArea" maxHeight="1.7976931348623157E308" prefWidth="200.0" wrapText="true" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </TextArea>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickSaveAlertEmailValue" prefHeight="65.0" stylesheets="@buttonAdd.css" text="Zapisz">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Icons/saveIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <HBox maxWidth="1.7976931348623157E308" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="80.0" text="Aby ułatwić kontakt osobą które otrzymają powiadomienie warto dopisać do jego treści informacje kontaktowe takie jak na przykład adres zamieszkania, numer telefonu. Do każdego powiadomienia dopisywana jest data wysłania oraz adres e-mail nadawcy." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                   <TabPane fx:id="TabPanePEF" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/normalTabPane.css" tabClosingPolicy="UNAVAILABLE" visible="false">
+                       <tabs>
+                           <Tab text="Dodaj pomiar PEF">
+                               <content>
+                                   <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                       <children>
+                                               <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Możesz oceniać i dodawać do bazy swoje pomiary PEF odczytane z pikflometru" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                                   <font>
+                                                       <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                               </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Odczytana wartość PEF" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="measuredPefTextField" alignment="CENTER" promptText="000">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickAddNewPEFMeasure" stylesheets="@buttonAdd.css" text="Oceń i dodaj pomiar do bazy">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Ocena wykonanego pomiaru PEF" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="353.0">
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Podana wartość PEF" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Należyta wartość PEF" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="155.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Kolor strefy " textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Różnica podana wartość | należyta wartość" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Procent podana wartość | należyta wartość" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="27.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Poprzednio odczytana wartość PEF" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="44.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Różnica podana wartość | poprzednia wartość " textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="155.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Zmienność dobowa " textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox maxWidth="170.0" prefHeight="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TextField fx:id="actualMeasuredPefTextField" alignment="CENTER" editable="false" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="normalPefTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="10.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="sfereColorTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="10.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="measuredNormalPefDifferenceTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="35.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="measuredNormalPefPercentTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="60.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="lastPefTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="126.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="measuredPefLastPefDiffernceTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="155.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></TextField>
+                                                <TextField fx:id="dailyPefDifferncePercent" alignment="CENTER" editable="false" layoutX="10.0" layoutY="184.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="164.0" maxWidth="1.7976931348623157E308" text="Wnioski" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextArea fx:id="resultsAreaTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" />
+                                       </VBox.margin></TextArea>
+                                       </children>
+                                   </VBox>
+                               </content>
+                           </Tab>
+                          <Tab text="Stan pikflometru">
+                             <content>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                   <children>
+                                      <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Pikflometr należy wymieniać co trzy lata" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                         <font>
+                                            <Font name="System Bold" size="16.0" />
+                                         </font>
+                                         <VBox.margin>
+                                            <Insets top="10.0" />
+                                         </VBox.margin>
+                                      </Label>
+                                    <VBox alignment="CENTER" maxWidth="325.0" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Wybierz date zakupu pikflometru" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                               <font>
+                                                  <Font name="System Bold" size="16.0" />
+                                               </font>
+                                               <VBox.margin>
+                                                  <Insets bottom="10.0" />
+                                               </VBox.margin>
+                                            </Label>
+                                          <DatePicker fx:id="pickflowmeterPurdhaseDateDatePicker" editable="false" maxWidth="1.7976931348623157E308" promptText="Wybierz date zakupu urządzenia" style="-fx-font-size: 16;" stylesheets="@FXCSS/datePicker.css" />
+                                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickSavePickflometerPurchaseDate" stylesheets="@buttonAdd.css" text="Zapisz">
+                                               <font>
+                                                  <Font name="System Bold" size="16.0" />
+                                               </font>
+                                               <VBox.margin>
+                                                  <Insets top="10.0" />
+                                               </VBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/saveIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                            </Button>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="20.0" text="Liczba dni do wymiany urządzenia na nowe" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="newPickflowmeterDays" alignment="CENTER" editable="false">
+                                                   <font>
+                                                      <Font name="System Bold" size="20.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                   </children>
+                                </VBox>
+                             </content>
+                          </Tab>
+                        <Tab text="Przeglądaj pomiary PEF">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <TableView fx:id="pefMeasureTableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/tableView.css" HBox.hgrow="ALWAYS">
+                                            <columns>
+                                              <TableColumn fx:id="pefMeasuresValueColumn" prefWidth="75.0" text="Wartość PEF" />
+                                              <TableColumn fx:id="pefMeasuresDateColumn" prefWidth="75.0" text="Data pomiaru" />
+                                                <TableColumn fx:id="pefMeasuresIdColumn" prefWidth="75.0" text="ID" visible="false" />
+                                                <TableColumn fx:id="pefMeasuresIdUserColumn" prefWidth="75.0" text="IDUSER" visible="false" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <Button contentDisplay="TOP" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRemoveSelectedPefMeasure" prefHeight="309.0" prefWidth="160.0" stylesheets="@buttonRemove.css" text="Usuń zaznaczony pomiar z listy" textAlignment="CENTER" wrapText="true">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/rubishBinIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRemoveAllPefMeasures" prefHeight="50.0" stylesheets="@FXCSS/buttonRemove2.css" text="Usuń wszystkie pomiary" VBox.vgrow="ALWAYS">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Icons/alertIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Wykres pomiarów PEF">
+                           <content>
+                              <VBox style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <StackPane prefHeight="500.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <BarChart fx:id="barChartOfPEF">
+                                             <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                             </yAxis>
+                                          </BarChart>
+                                          <LineChart fx:id="lineChartOfPEF" visible="false">
+                                             <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                             </yAxis>
+                                          </LineChart>
+                                       </children>
+                                    </StackPane>
+                                    <HBox maxHeight="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label maxHeight="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Ilość ostatnich pomiarów na wykresie: ">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="howManyPefMeasuresTextField" alignment="CENTER" maxWidth="100.0" stylesheets="@FXCSS/textFieldBorder.css" text="10">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickDrawPEFBarChart" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Pokaż wykres słupkowy" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickDrawPEFLineChart" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Pokaż wykres liniowy" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content></Tab>
+                       </tabs>
+                   </TabPane>
+                  <TabPane fx:id="TabPaneBMI" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/normalTabPane.css" tabClosingPolicy="UNAVAILABLE" visible="false">
+                     <tabs>
+                        <Tab text="Dodaj pomiar BMI">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Możesz oceniać i dodawać do bazy swoje pomiary masy ciała" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Odczytana wartość masy ciała" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="bodymassTextField" alignment="CENTER" promptText="000">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <VBox maxWidth="1.7976931348623157E308">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Określ poziom aktywności fizycznej" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <RadioButton fx:id="noActivity" minHeight="25.0" mnemonicParsing="false" selected="true" text="Brak aktywności,praca siedząca">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <RadioButton fx:id="lowActivity" layoutX="10.0" layoutY="27.0" minHeight="25.0" mnemonicParsing="false" text="Niska aktywność (praca siedząca i 1-2 treningi w tygodniu)" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="activityRadioButtons" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="mediumActivity" layoutX="10.0" layoutY="44.0" minHeight="25.0" mnemonicParsing="false" text="Średnia aktywność (praca siedząca i 3-4 treningi w tygodniu)" toggleGroup="$activityRadioButtons" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <RadioButton fx:id="highActivity" layoutX="10.0" layoutY="78.0" minHeight="25.0" mnemonicParsing="false" text="Wysoka aktywność (praca fizyczna i 3-4 treningi w tygodniu)" toggleGroup="$activityRadioButtons" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <RadioButton fx:id="veryHighActivity" layoutX="10.0" layoutY="112.0" minHeight="25.0" mnemonicParsing="false" text="Bardzo wysoka aktywność (sportowcy, osoby codziennie trenujące)" toggleGroup="$activityRadioButtons" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickAddNewBmiMeasure" stylesheets="@buttonAdd.css" text="Oceń pomiar i dodaj wartość BMI do bazy">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Ocena wykonanego pomiaru masy ciała" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0">
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Odczytana wartość masy ciała" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Należyta wartość masy ciała" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="39.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Różnica podana wartość | należyta wartość" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Wskaźnik masy ciała BMI" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="27.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Poprzednio uzyskana wartość BMI" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="44.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Różnica obecna wartość | poprzednia wartość " textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="155.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Podstawowa przemiana materii PPM" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Całkowita przemiana materii CPM" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Zapotrzebowanie na wode (ml)" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox maxWidth="170.0" prefHeight="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TextField fx:id="actualMeasuredBodyMassTextField" alignment="CENTER" editable="false" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="normalBodyMassTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="10.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="actualNormalBodyMassDiffernce" alignment="CENTER" editable="false" layoutX="10.0" layoutY="10.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="bmiTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="35.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="lastBodyMassTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="10.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="bodyMassDiffernce" alignment="CENTER" editable="false" layoutX="10.0" layoutY="68.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="ppmTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="60.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="cpmTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="126.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="watherTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="155.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="164.0" maxWidth="1.7976931348623157E308" text="Wnioski" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextArea fx:id="resultsBmiTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Przeglądaj pomiary BMI">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <TableView fx:id="bmiMeasureTableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/tableView.css" HBox.hgrow="ALWAYS">
+                                             <columns>
+                                                <TableColumn fx:id="bmiMeasureValueColumn" prefWidth="75.0" text="Wartość BMI" />
+                                                <TableColumn fx:id="bmiMeasureDateColumn" prefWidth="75.0" text="Data pomiaru" />
+                                                <TableColumn fx:id="bmiMeasureIdColumn" prefWidth="75.0" text="ID" visible="false" />
+                                                <TableColumn fx:id="bmiMeasureIdUserColumn" prefWidth="75.0" text="IDUSER" visible="false" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <Button contentDisplay="TOP" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRemoveSelectedBmiMeasure" prefHeight="309.0" prefWidth="160.0" stylesheets="@buttonRemove.css" text="Usuń zaznaczony pomiar z listy" textAlignment="CENTER" wrapText="true">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/rubishBinIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRemoveAllBmiMeasures" prefHeight="50.0" stylesheets="@FXCSS/buttonRemove2.css" text="Usuń wszystkie pomiary" VBox.vgrow="ALWAYS">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Icons/alertIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Wykres pomiarów BMI">
+                           <content>
+                              <VBox style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <StackPane prefHeight="500.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <BarChart fx:id="barChartOfBmi">
+                                             <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                             </yAxis>
+                                          </BarChart>
+                                          <LineChart fx:id="lineChartOfBmi" visible="false">
+                                             <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                             </yAxis>
+                                          </LineChart>
+                                       </children>
+                                    </StackPane>
+                                    <HBox maxHeight="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label maxHeight="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Ilość ostatnich pomiarów na wykresie: ">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="howManyBmiMeasuresTextField" alignment="CENTER" maxWidth="100.0" stylesheets="@FXCSS/textFieldBorder.css" text="10">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickDrawBmiBarChart" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Pokaż wykres słupkowy" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickDrawBmiLineChart" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Pokaż wykres liniowy" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                  <TabPane fx:id="TabPaneBPM" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/normalTabPane.css" tabClosingPolicy="UNAVAILABLE" visible="false">
+                     <tabs>
+                        <Tab text="Dodaj pomiar BPM">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Możesz oceniać i dodawać do bazy swoje pomiary pulsu" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Odczytana wartość pulsu" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="bpmTextField" alignment="CENTER" promptText="000">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickAddNewBpmMeasure" stylesheets="@buttonAdd.css" text="Oceń pomiar i dodaj wartość BPM do bazy">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Ocena wykonanego pomiaru pulsu" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0">
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Odczytana wartość  pulsu" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Należyta wartość pulsu" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="39.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Różnica podana wartość | należyta wartość" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="27.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Poprzednio uzyskana wartość pulsu" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="44.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Różnica obecna wartość | poprzednia wartość " textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox maxWidth="170.0" prefHeight="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TextField fx:id="actualMeasuredBpmTextField" alignment="CENTER" editable="false" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="normalBpmTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="10.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="actualNormalBpmDiffernce" alignment="CENTER" editable="false" layoutX="10.0" layoutY="10.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="lastBpmTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="35.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="lastActualBpmDifferenceTextField" alignment="CENTER" editable="false" layoutX="10.0" layoutY="10.0" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="164.0" maxWidth="1.7976931348623157E308" text="Wnioski" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextArea fx:id="resultsBpmTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Przeglądaj pomiary BPM">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <TableView fx:id="bpmMeasureTableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/tableView.css" HBox.hgrow="ALWAYS">
+                                             <columns>
+                                                <TableColumn fx:id="bpmMeasureValueColumn" prefWidth="75.0" text="Wartość BPM" />
+                                                <TableColumn fx:id="bpmMeasureDateColumn" prefWidth="75.0" text="Data pomiaru" />
+                                                <TableColumn fx:id="bpmMeasureIdColumn" prefWidth="75.0" text="ID" visible="false" />
+                                                <TableColumn fx:id="bpmMeasureIdUserColumn" prefWidth="75.0" text="IDUSER" visible="false" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <Button contentDisplay="TOP" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRemoveSelectedBpmMeasure" prefHeight="309.0" prefWidth="160.0" stylesheets="@buttonRemove.css" text="Usuń zaznaczony pomiar z listy" textAlignment="CENTER" wrapText="true">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Icons/rubishBinIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRemoveAllBpmMeasures" prefHeight="50.0" stylesheets="@FXCSS/buttonRemove2.css" text="Usuń wszystkie pomiary" VBox.vgrow="ALWAYS">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Icons/alertIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Wykres pomiarów BPM">
+                           <content>
+                              <VBox style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <StackPane prefHeight="500.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <BarChart fx:id="barChartOfBpm">
+                                             <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                             </yAxis>
+                                          </BarChart>
+                                          <LineChart fx:id="lineChartOfBpm" visible="false">
+                                             <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                             </yAxis>
+                                          </LineChart>
+                                       </children>
+                                    </StackPane>
+                                    <HBox maxHeight="25.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label maxHeight="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Ilość ostatnich pomiarów na wykresie: ">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="howManyBpmMeasuresTextField" alignment="CENTER" maxWidth="100.0" stylesheets="@FXCSS/textFieldBorder.css" text="10">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickDrawBpmBarChart" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Pokaż wykres słupkowy" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickDrawBpmLineChart" style="-fx-border-color: black; -fx-border-width: 1.5;" stylesheets="@FXCSS/buttonAdd.css" text="Pokaż wykres liniowy" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                  <TabPane fx:id="medicinesTabPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@FXCSS/normalTabPane.css" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="Powiadomienia">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #61a2ff;">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Jeżeli chcesz otrzymywać na adres e-mail codzienne przypomnienie o przyjeciu danego leku możesz ustawić je tutaj" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Parametry powiadomienia" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox maxWidth="300.0" prefHeight="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Nazwa leku" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Dawka leku" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="39.0" maxWidth="1.7976931348623157E308" stylesheets="@FXCSS/labelBorder.css" text="Godzina powiadomienia" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox maxWidth="300.0" prefHeight="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TextField fx:id="medicinesNameTextField" alignment="CENTER" maxWidth="1.7976931348623157E308" promptText="Wpisz nazwe leku" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="medicinesDoseTextField" alignment="CENTER" layoutX="10.0" layoutY="10.0" promptText="Wpisz dawke leku" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="noificationTimeTextField" alignment="CENTER" layoutX="10.0" layoutY="10.0" promptText="Wpisz godzine powiadomienia" stylesheets="@FXCSS/textFieldBorder.css">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCLickAddNewNotificationButton" stylesheets="@buttonAdd.css" text="Dodaj powiadomienie">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Icons/addIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="164.0" maxWidth="1.7976931348623157E308" text="Lista powiadomień" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TableView fx:id="notificationsTableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                      <columns>
+                                        <TableColumn fx:id="medicineNameColumn" prefWidth="75.0" text="Nazwa leku" />
+                                        <TableColumn fx:id="medicineDoseColumn" prefWidth="75.0" text="Dawka leku" />
+                                          <TableColumn fx:id="notificationTimeColumn" prefWidth="161.0" text="Godzina powiadomienia" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                       <stylesheets>
+                                          <URL value="@FXCSS/tableView.css" />
+                                          <URL value="@FXCSS/tableViewCenterColumns.css" />
+                                       </stylesheets>
+                                    </TableView>
+                                    <Button layoutX="20.0" layoutY="200.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickRemoveSelectedNotification" stylesheets="@FXCSS/buttonRemove.css" text="Usuń powiadomienie">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Icons/rubishBinIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </children>
+</StackPane>
